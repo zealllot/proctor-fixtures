@@ -16,5 +16,9 @@ func UpdateProfile(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "bad json", 400)
 		return
 	}
+	if len(req.DisplayName) > 100 {
+		http.Error(w, "display name too long", 400)
+		return
+	}
 	w.WriteHeader(204)
 }
