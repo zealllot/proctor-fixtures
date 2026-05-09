@@ -6,8 +6,10 @@
 package main
 
 import (
+	"go/build"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -50,6 +52,10 @@ func configureAdmin(db *gorm.DB) *admin.Admin {
 }
 
 func main() {
+	if os.Getenv("GOPATH") == "" {
+		os.Setenv("GOPATH", build.Default.GOPATH)
+	}
+
 	db, err := gorm.Open("sqlite3", "qor-fixture.db")
 	if err != nil {
 		log.Fatalf("open db: %v", err)
