@@ -1,0 +1,19 @@
+name: PRoctor
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  issue_comment:
+    types: [created]
+
+jobs:
+  proctor:
+    if: github.event_name != 'issue_comment' || contains(github.event.comment.body, '/proctor run')
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - uses: zealllot/proctor/github-action@v0.1.1
+        with:
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
