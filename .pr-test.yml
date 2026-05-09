@@ -1,12 +1,19 @@
-# PRoctor config for the fixtures repo. Boots a minimal Vite+React dev
-# server on 127.0.0.1:5173 so chrome-devtools tests have something real
-# to drive (instead of skipping with reason=no-server).
+# PRoctor config for the fixtures repo. Boots two services:
+#   1. Vite + React dev server on 127.0.0.1:5173 (frontend / mixed PRs)
+#   2. QOR admin Go binary on 127.0.0.1:7000  (admin-config PRs)
+# Either readiness probe is enough for chrome-devtools tests; the planner
+# picks base_url by category. We default base_url to the frontend; the
+# admin URL appears in the admin command's source (cmd/admin/main.go) for
+# the planner to pick up when it sees admin-config diffs.
 setup:
   - "corepack enable && corepack prepare pnpm@9 --activate"
   - "pnpm install --frozen-lockfile=false --reporter=silent"
   - "pnpm dev > .proctor/dev.log 2>&1 &"
-  - "for i in $(seq 1 60); do curl -fsS http://127.0.0.1:5173 >/dev/null 2>&1 && break; sleep 1; done"
+  - "go build -o /tmp/qor-admin ./cmd/admin"
+  - "/tmp/qor-admin > .proctor/qor.log 2>&1 &"
+  - "for i in $(seq 1 60); do curl -fsS http://127.0.0.1:5173 >/dev/null 2>&1 && curl -fsS http://127.0.0.1:7000/healthz >/dev/null 2>&1 && break; sleep 1; done"
 base_url: "http://127.0.0.1:5173"
+admin_url: "http://127.0.0.1:7000/admin"
 test_focus: ["frontend", "api"]
 require_approval: false
 auto_fix: true
