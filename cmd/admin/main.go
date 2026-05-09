@@ -19,6 +19,7 @@ type User struct {
 	gorm.Model
 	Name  string
 	Email string
+	Phone string
 	Role  string
 }
 
@@ -38,8 +39,8 @@ func configureAdmin(db *gorm.DB) *admin.Admin {
 	a := admin.New(&admin.AdminConfig{DB: db})
 
 	user := a.AddResource(&User{})
-	user.SearchAttrs("Name", "Email")
-	user.IndexAttrs("ID", "Name", "Email", "Role", "CreatedAt")
+	user.SearchAttrs("Name", "Email", "Phone")
+	user.IndexAttrs("ID", "Name", "Email", "Phone", "Role", "CreatedAt")
 
 	article := a.AddResource(&Article{})
 	article.IndexAttrs("ID", "Title", "Status", "Author", "CreatedAt")
