@@ -2,10 +2,20 @@
   "name": "proctor-fixtures",
   "version": "0.0.0",
   "private": true,
-  "description": "Test fixtures for PRoctor — not a real application",
+  "type": "module",
+  "description": "Test fixtures for PRoctor — minimal Vite+React app so PRoctor can drive real browser tests against the components.",
   "scripts": {
-    "dev": "echo 'fixture dev server stub' && tail -f /dev/null",
-    "build": "echo 'fixture build stub'",
-    "tsc": "echo 'fixture tsc stub'"
+    "dev": "vite --host 127.0.0.1 --port 5173 --strictPort"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
   }
 }
