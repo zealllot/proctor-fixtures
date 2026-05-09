@@ -14,6 +14,6 @@ jobs:
       pull-requests: write
       contents: write
     steps:
-      - uses: zealllot/proctor/github-action@v0.1.5
+      - uses: zealllot/proctor/github-action@v0.1.6
         with:
           claude-code-oauth-token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
