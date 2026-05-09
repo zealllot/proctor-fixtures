@@ -9,7 +9,10 @@ function App() {
       <h1>PRoctor Fixtures</h1>
       <section>
         <h2>Login</h2>
-        <LoginButton />
+        <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+          <LoginButton />
+          <LoginButton loading />
+        </div>
       </section>
       <section>
         <h2>Settings</h2>
