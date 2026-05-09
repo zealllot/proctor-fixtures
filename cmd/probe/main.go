@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+
+	"github.com/zealllot/proctor-fixtures/api"
+)
 
 func main() {
-	fmt.Println("probe v0")
+	http.HandleFunc("/api/users", api.ListUsers)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
