@@ -9,7 +9,7 @@ function App() {
       <h1>PRoctor Fixtures</h1>
       <section>
         <h2>Login</h2>
-        <LoginButton />
+        <LoginButton label="Login" />
       </section>
       <section>
         <h2>Settings</h2>
