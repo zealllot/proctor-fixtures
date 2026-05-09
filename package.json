@@ -1,0 +1,11 @@
+{
+  "name": "proctor-fixtures",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Test fixtures for PRoctor — not a real application",
+  "scripts": {
+    "dev": "echo 'fixture dev server stub' && tail -f /dev/null",
+    "build": "echo 'fixture build stub'",
+    "tsc": "echo 'fixture tsc stub'"
+  }
+}

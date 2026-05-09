@@ -1,0 +1,11 @@
+# PRoctor config for the fixtures repo. The fixtures repo isn't a real
+# application — these settings keep proctor's setup phase quick and
+# don't try to actually run a server.
+setup: []
+base_url: "http://localhost:5173"
+test_focus: ["frontend", "api"]
+require_approval: false
+auto_fix: true
+fix_pr_target_branch: "${PR_BRANCH}"
+per_test_timeout_seconds: 30
+mobile_emulator: false

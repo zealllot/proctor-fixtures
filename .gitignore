@@ -1,0 +1,5 @@
+# Local artifacts
+.proctor/runs/
+node_modules/
+*.log
+.DS_Store
