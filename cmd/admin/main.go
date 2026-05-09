@@ -6,12 +6,14 @@
 package main
 
 import (
+	"html/template"
 	"log"
 	"net/http"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/qor/admin"
+	"github.com/qor/qor"
 )
 
 // User represents a person who can sign in to the admin.
@@ -36,6 +38,7 @@ type Article struct {
 // function and let the test plan focus on its visible effects.
 func configureAdmin(db *gorm.DB) *admin.Admin {
 	a := admin.New(&admin.AdminConfig{DB: db})
+	a.SetSiteName("PRoctor Fixtures Admin")
 
 	user := a.AddResource(&User{})
 	user.SearchAttrs("Name", "Email")
@@ -44,6 +47,30 @@ func configureAdmin(db *gorm.DB) *admin.Admin {
 	article := a.AddResource(&Article{})
 	article.IndexAttrs("ID", "Title", "Status", "Author", "CreatedAt")
 	article.EditAttrs("Title", "Body", "Status", "Author")
+	// Render Status with a colored badge dot so editors can scan the
+	// list at a glance. Returning template.HTML tells qor's renderer
+	// not to escape the inline span.
+	article.Meta(&admin.Meta{
+		Name: "Status",
+		Type: "string",
+		Valuer: func(record interface{}, _ *qor.Context) interface{} {
+			a, _ := record.(*Article)
+			if a == nil {
+				return ""
+			}
+			color := "#9ca3af" // gray, draft
+			label := "Draft"
+			switch a.Status {
+			case "published":
+				color = "#22c55e" // green
+				label = "Published"
+			case "archived":
+				color = "#ef4444" // red
+				label = "Archived"
+			}
+			return template.HTML(`<span data-testid="status-badge" style="display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:999px;background:#f3f4f6;font-size:13px;"><span style="display:inline-block;width:8px;height:8px;border-radius:999px;background:` + color + `;"></span>` + label + `</span>`)
+		},
+	})
 
 	return a
 }
