@@ -14,6 +14,6 @@ jobs:
       pull-requests: write
       contents: write
     steps:
-      - uses: zealllot/proctor/github-action@v0.1.1
+      - uses: zealllot/proctor/github-action@v0.1.2
         with:
-          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude-code-oauth-token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
