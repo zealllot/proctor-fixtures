@@ -1,6 +1,6 @@
 module github.com/zealllot/proctor-fixtures
 
-go 1.22
+go 1.23.0
 
 require (
 	github.com/jinzhu/gorm v1.9.16
@@ -29,5 +29,5 @@ require (
 	github.com/qor/validations v0.0.0-20171228122639-f364bca61b46 // indirect
 	github.com/rainycape/unidecode v0.0.0-20150907023854-cb7f23ec59be // indirect
 	github.com/theplant/cldr v0.0.0-20190423050709-9f76f7ce4ee8 // indirect
-	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e // indirect
+	golang.org/x/net v0.38.0 // indirect
 )
