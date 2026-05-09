@@ -9,12 +9,22 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/qor/admin"
 	"github.com/qor/qor"
 )
+
+func init() {
+	if os.Getenv("GOPATH") == "" {
+		if home, err := os.UserHomeDir(); err == nil {
+			os.Setenv("GOPATH", filepath.Join(home, "go"))
+		}
+	}
+}
 
 // User represents a person who can sign in to the admin.
 type User struct {
