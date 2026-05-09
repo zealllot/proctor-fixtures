@@ -60,7 +60,7 @@ Eight long-lived PRs serve as PRoctor's e2e test corpus — they're never merged
 
 Plus continuously-running demo PRs that exercise specific PRoctor versions:
 
-- [#21 — Admin visual: site name + colored status badges](https://github.com/zealllot/proctor-fixtures/pull/21) — chrome-devtools tests with inline screenshots
+- [#21 — Admin visual: site name + colored status badges](https://github.com/zealllot/proctor-fixtures/pull/21) — chrome-devtools tests with per-item dispatch and inline screenshots
 - [#18 — LoginButton: icon, hover, tooltip](https://github.com/zealllot/proctor-fixtures/pull/18) — 5/5 chrome-devtools pass with `screenshot_focus` annotations
 - [#17 — User.Phone field](https://github.com/zealllot/proctor-fixtures/pull/17) — exercises pr_context (PR body referencing fake Slack/Jira URLs)
 
