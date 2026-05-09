@@ -1,11 +1,15 @@
-# PRoctor config for the fixtures repo. The fixtures repo isn't a real
-# application — these settings keep proctor's setup phase quick and
-# don't try to actually run a server.
-setup: []
-base_url: "http://localhost:5173"
+# PRoctor config for the fixtures repo. Boots a minimal Vite+React dev
+# server on 127.0.0.1:5173 so chrome-devtools tests have something real
+# to drive (instead of skipping with reason=no-server).
+setup:
+  - "corepack enable && corepack prepare pnpm@9 --activate"
+  - "pnpm install --frozen-lockfile=false --reporter=silent"
+  - "pnpm dev > .proctor/dev.log 2>&1 &"
+  - "for i in $(seq 1 60); do curl -fsS http://127.0.0.1:5173 >/dev/null 2>&1 && break; sleep 1; done"
+base_url: "http://127.0.0.1:5173"
 test_focus: ["frontend", "api"]
 require_approval: false
 auto_fix: true
 fix_pr_target_branch: "${PR_BRANCH}"
-per_test_timeout_seconds: 30
+per_test_timeout_seconds: 60
 mobile_emulator: false
