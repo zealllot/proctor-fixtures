@@ -5,6 +5,7 @@ go 1.23.0
 require (
 	github.com/jinzhu/gorm v1.9.16
 	github.com/qor/admin v1.2.0
+	github.com/qor/qor v0.0.0-20210618082622-a52aba0a0ce1
 )
 
 require (
@@ -22,7 +23,6 @@ require (
 	github.com/microcosm-cc/bluemonday v1.0.3 // indirect
 	github.com/qor/assetfs v0.0.0-20170713023933-ff57fdc13a14 // indirect
 	github.com/qor/middlewares v0.0.0-20170822143614-781378b69454 // indirect
-	github.com/qor/qor v0.0.0-20210618082622-a52aba0a0ce1 // indirect
 	github.com/qor/responder v0.0.0-20171031032654-b6def473574f // indirect
 	github.com/qor/roles v0.0.0-20171127035124-d6375609fe3e // indirect
 	github.com/qor/session v0.0.0-20170907035918-8206b0adab70 // indirect
